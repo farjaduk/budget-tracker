@@ -53,9 +53,8 @@ https://github.com/farjaduk/budget-tracker
 
 Image of the application:
 
-![Fitness Tracker](./budgetTracker.PNG)
-
 The deployed application is hosted on Heroku:
+https://budget-tracker-030720.herokuapp.com/
 
 
 ## Acceptance Criteria
