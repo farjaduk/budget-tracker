@@ -3,8 +3,8 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
 
-// new port, added process.env.PORT for heroku deployment
 const PORT = process.env.PORT || 3001;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/budget";
 
 const app = express();
 
@@ -16,18 +16,14 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-// additional code to prevent warnings regarding deprecation
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
-
-
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {useNewUrlParser: true, useCreateIndex: true});
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useFindAndModify: false
+});
 
 // routes
 app.use(require("./routes/api.js"));
 
 app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+    console.log(`App running on port ${PORT}!`);
 });
